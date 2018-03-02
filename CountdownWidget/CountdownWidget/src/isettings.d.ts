@@ -20,4 +20,5 @@ interface ISettings {
 	backgroundColor: string;
 	foregroundColor: string;
 	skipNonWorkingDays: boolean;
+    roundNumber: boolean;
 }
