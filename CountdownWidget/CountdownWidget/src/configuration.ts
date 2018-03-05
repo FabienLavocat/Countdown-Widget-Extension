@@ -39,7 +39,7 @@ export class Configuration {
 	private $backgroundColor = $("#background-color-input");
 	private $foregroundColor = $("#foreground-color-input");
 	private $skipNonWorkingDays = $("#skipNonWorkingDays");
-    private $roundNumber = $("#roundNumber");
+	private $roundNumber = $("#roundNumber");
 	private currentIterationEnd = null;
 	constructor(public WidgetHelpers, public isSprintWidget: boolean) { }
 
@@ -54,15 +54,15 @@ export class Configuration {
 				this.showTimezones(settings);
 				this.showColorPickers(settings);
 				this.showDateTimePicker(settings, currentIterationEnd);
-                this.showWorkingDays(settings);
-                this.showRoundNumber(settings);
+				this.showWorkingDays(settings);
+				this.showRoundNumber(settings);
 
 				VSS.resize();
 				this.$select
 					.add(this.$backgroundColor)
 					.add(this.$foregroundColor)
-                    .add(this.$skipNonWorkingDays)
-                    .add(this.$roundNumber)
+					.add(this.$skipNonWorkingDays)
+					.add(this.$roundNumber)
 					.change(() => {
 						this.widgetConfigurationContext.notify(this.WidgetHelpers.WidgetEvent.ConfigurationChange,
 							this.WidgetHelpers.WidgetEvent.Args(this.getCustomSettings()));
@@ -164,13 +164,13 @@ export class Configuration {
 		}
 	}
 
-    private showRoundNumber(settings) {
-        if (settings) {
-            this.$roundNumber.prop("checked", settings.roundNumber);
-        } else {
-            this.$roundNumber.prop("checked", false);
-        }
-    }
+	private showRoundNumber(settings) {
+		if (settings) {
+			this.$roundNumber.prop("checked", settings.roundNumber);
+		} else {
+			this.$roundNumber.prop("checked", false);
+		}
+	}
 
 	private getCustomSettings() {
 		let formattedDate = "";
@@ -188,15 +188,15 @@ export class Configuration {
 		const foregroundColor = (this.$foregroundColor as any).spectrum("get").toRgbString();
 		const backgroundColor = (this.$backgroundColor as any).spectrum("get").toRgbString();
 		const skipNonWorkingDays = this.$skipNonWorkingDays.prop("checked");
-        const roundNumber = this.$roundNumber.prop("checked");
+		const roundNumber = this.$roundNumber.prop("checked");
 
 		const result = {
 			data: JSON.stringify({
 				backgroundColor,
 				countDownDate: formattedDate,
 				foregroundColor,
+				roundNumber,
 				skipNonWorkingDays,
-                roundNumber,
 				timezone: $("select").val(),
 			} as ISettings),
 		};

@@ -63,16 +63,16 @@ export class CountdownWiget {
 							iterationLastDay,
 							customSettings.name,
 							customSettings.backgroundColor,
-                            customSettings.foregroundColor,
-                            customSettings.roundNumber,
+							customSettings.foregroundColor,
+							customSettings.roundNumber,
 							workingdays);
 					} else {
 						return this.display(
 							null,
 							customSettings.name,
 							customSettings.backgroundColor,
-                            customSettings.foregroundColor,
-                            customSettings.roundNumber,
+							customSettings.foregroundColor,
+							customSettings.roundNumber,
 							workingdays);
 					}
 				});
@@ -81,14 +81,17 @@ export class CountdownWiget {
 					null,
 					customSettings.name,
 					customSettings.backgroundColor,
-                    customSettings.foregroundColor,
-                    customSettings.roundNumber,
+					customSettings.foregroundColor,
+					customSettings.roundNumber,
 					workingdays);
 			}
 		});
 	}
 
-	private display(to, name: string, backgroundColor, foregroundColor, roundNumber: boolean, workingdays: System_Contracts.DayOfWeek[]) {
+	private display(
+		to, name: string, backgroundColor, foregroundColor,
+		roundNumber: boolean, workingdays: System_Contracts.DayOfWeek[]) {
+
 		const $title = $(".title");
 		const $container = $("#countdown-container");
 		const $countdownBottomContainer = $("#countdown-bottom-container");
@@ -128,13 +131,13 @@ export class CountdownWiget {
 
 		const calculator = new CountdownCalculator.CountdownCalculator(
 			now,
-            to,
-            roundNumber,
-            tempWorkingDays
+			to,
+			roundNumber,
+			tempWorkingDays,
 		);
 
 		if (calculator.isValid()) {
-            const result = calculator.getDifference();
+			const result = calculator.getDifference();
 
 			$container.text(result.getDisplayValue());
 			$countdownBottomContainer.text(result.getDisplayUnit() + " remaining");
@@ -152,8 +155,8 @@ export class CountdownWiget {
 			moment.tz(customSettings.countDownDate, "MM-DD-YYYY HH:mm", customSettings.timezone),
 			customSettings.name,
 			customSettings.backgroundColor,
-            customSettings.foregroundColor,
-            customSettings.roundNumber,
+			customSettings.foregroundColor,
+			customSettings.roundNumber,
 			workingdays);
 	}
 
@@ -166,8 +169,8 @@ export class CountdownWiget {
 				countDownDate: moment().add(1, "days").format("MM-DD-YYYY HH:mm"),
 				foregroundColor: "white",
 				name: widgetSettings.name,
-                skipNonWorkingDays: false,
-                roundNumber: false,
+				roundNumber: false,
+				skipNonWorkingDays: false,
 				timezone: (moment as any).tz.guess(),
 			};
 		} else {
